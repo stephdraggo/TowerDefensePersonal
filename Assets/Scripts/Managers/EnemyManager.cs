@@ -5,7 +5,7 @@ using TowerDefence.Enemies;
 
 namespace TowerDefence.Managers
 {
-    [AddComponentMenu("Managers/Enemy")]
+    [AddComponentMenu("Mechanics/Enemy/Manager")]
     public class EnemyManager : MonoBehaviour
     {
         //we making a singleton
@@ -44,9 +44,9 @@ namespace TowerDefence.Managers
 
         }
 
-        public void SpawnEnemy()
+        public void SpawnEnemy(Transform _spawner)
         {
-            GameObject newEnemy = Instantiate(enemyPrefab); //new enemy pls
+            GameObject newEnemy = Instantiate(enemyPrefab, _spawner.position, enemyPrefab.transform.rotation); //new enemy at spawn location 
             livingEnemies.Add(newEnemy.GetComponent<Enemy>()); //add to living enemies list
         }
 

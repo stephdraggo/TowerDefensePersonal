@@ -14,6 +14,7 @@ namespace TowerDefence
         [Header("Player Variables")]
         private int money = 100;
         #endregion
+        #region Awake, singleton set up
         void Awake()
         {
             if (instance == null) //if the instance doesn't exist
@@ -27,7 +28,7 @@ namespace TowerDefence
             }
             DontDestroyOnLoad(gameObject); //always be able to access the original instance
         }
-
+        #endregion
         void Update()
         {
 
