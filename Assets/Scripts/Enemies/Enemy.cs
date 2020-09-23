@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TowerDefence.Towers;
+using TowerDefence.Managers;
 
 namespace TowerDefence.Enemies
 {
@@ -55,6 +56,7 @@ namespace TowerDefence.Enemies
         {
             _tower.AddExperience(xpGain * 5);
             player.AddMoney(moneyGain);
+            EnemyManager.instance.KillEnemy(this); //call manager kill method
             Destroy(gameObject);
         }
         #endregion

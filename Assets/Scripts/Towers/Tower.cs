@@ -10,9 +10,9 @@ namespace TowerDefence.Towers
     public class Tower : MonoBehaviour
     {
         #region Variables
-        [Header("Reference Variables")]
         [Header("General Stats")]
         [SerializeField] private string towerName = "";
+        [SerializeField] private int level = 1;
         [SerializeField, TextArea] private string description = "";
         [SerializeField, Range(1, 10)] private int cost = 1;
 
@@ -25,9 +25,8 @@ namespace TowerDefence.Towers
         [SerializeField, Min(0.1f)] private float damage = 1;
         [SerializeField, Min(0.1f)] private float minRange = 1;
         [SerializeField] private float maxRange = 5;
-        [SerializeField, Min(0.1f)] private float fireRate = 0.1f;
+        [SerializeField, Min(0.01f)] private float fireRate = 0.1f;
 
-        private int level = 1;
         private float xp;
         private Enemy target;
         private float currentTime = 0;
@@ -89,7 +88,11 @@ namespace TowerDefence.Towers
                 return baseRequiredXp * level * xpScaler; //multiply base xp by level and xpScaler and return value
             }
         }
-
+        /// <summary>Enemy currently being targeted by this tower. Null if no target found.</summary>
+        protected Enemy Target
+        {
+            get => target;
+        }
         #endregion
         #region Unity Editor Functions
 #if UNITY_EDITOR
@@ -101,16 +104,16 @@ namespace TowerDefence.Towers
         void OnDrawGizmosSelected() //draws only when object is selected
         {
             Gizmos.color = new Color(1, 0, 0, 0.5f); //transluscent red
-            Gizmos.DrawSphere(transform.position, minRange); //min range sphere
+            Gizmos.DrawSphere(transform.position, MinRange); //min range sphere
 
             Gizmos.color = new Color(0, 0, 1, 0.25f); //transluscent blue
-            Gizmos.DrawSphere(transform.position, maxRange); //max range sphere
+            Gizmos.DrawSphere(transform.position, MaxRange); //max range sphere
         }
 #endif
         #endregion
         void Update()
         {
-            Target(); //call targetting function
+            FindTarget(); //call targetting function
             FireWhenReady(); //call fire when ready function
         }
         #region Functions
@@ -126,9 +129,15 @@ namespace TowerDefence.Towers
             }
         }
         #endregion
+        #region protected
+        protected virtual void RenderAttackVisuals()
+        {
+
+        }
+        #endregion
         #region private
         /// <summary>Finds and assigns a target</summary>
-        private void Target()
+        private void FindTarget()
         {
             Enemy[] _enemies = EnemyManager.instance.GetClosestEnemy(transform, MaxRange, minRange); //get the enemy manager to find the enemies within range
 
@@ -178,7 +187,7 @@ namespace TowerDefence.Towers
             {
                 target.Damage(this); //tell the target to take damage according this tower's damage rate
 
-                //render visuals here
+                RenderAttackVisuals();
             }
         }
 

@@ -49,6 +49,18 @@ namespace TowerDefence.Managers
             GameObject newEnemy = Instantiate(enemyPrefab, _spawner.position, enemyPrefab.transform.rotation); //new enemy at spawn location 
             livingEnemies.Add(newEnemy.GetComponent<Enemy>()); //add to living enemies list
         }
+        /// <summary>
+        /// Removes dead enemy from list of living enemies.
+        /// </summary>
+        /// <param name="_enemy">Dead enemy</param>
+        public void KillEnemy(Enemy _enemy)
+        {
+            int enemyIndex = livingEnemies.IndexOf(_enemy);
+            if (enemyIndex != -1)
+            {
+                livingEnemies.RemoveAt(enemyIndex);
+            }
+        }
 
         /// <summary>
         /// Loops through all enemies, finding closest enemies within a certain range.
