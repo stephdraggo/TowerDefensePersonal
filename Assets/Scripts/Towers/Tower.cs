@@ -7,7 +7,7 @@ using TowerDefence.Managers;
 namespace TowerDefence.Towers
 {
     [AddComponentMenu("Mechanics/Tower")]
-    public class Tower : MonoBehaviour
+    public abstract class Tower : MonoBehaviour
     {
         #region Variables
         [Header("General Stats")]
@@ -25,7 +25,7 @@ namespace TowerDefence.Towers
         [SerializeField, Min(0.1f)] private float damage = 1;
         [SerializeField, Min(0.1f)] private float minRange = 1;
         [SerializeField] private float maxRange = 5;
-        [SerializeField, Min(0.01f)] private float fireRate = 0.1f;
+        [SerializeField, Min(0.01f)] protected float fireRate = 0.1f;
 
         private float xp;
         private Enemy target;
@@ -111,7 +111,7 @@ namespace TowerDefence.Towers
         }
 #endif
         #endregion
-        void Update()
+        protected virtual void Update()
         {
             FindTarget(); //call targetting function
             FireWhenReady(); //call fire when ready function
@@ -130,10 +130,8 @@ namespace TowerDefence.Towers
         }
         #endregion
         #region protected
-        protected virtual void RenderAttackVisuals()
-        {
-
-        }
+        protected abstract void RenderAttackVisuals();
+        protected abstract void RenderLevelUpVisuals();
         #endregion
         #region private
         /// <summary>Finds and assigns a target</summary>
@@ -197,7 +195,7 @@ namespace TowerDefence.Towers
             xp -= RequiredXp; //reset xp while keeping any overflow
             level++; //increase level
 
-            //level up visuals go here
+            RenderLevelUpVisuals();
         }
         #endregion
         #endregion
