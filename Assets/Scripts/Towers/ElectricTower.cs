@@ -31,7 +31,7 @@ namespace TowerDefence.Towers
         #region Functions
         protected override void RenderAttackVisuals()
         {
-            recursionIndex = 0; //reset recursion index
+            recursionIndex = 1; //reset recursion index
 
             MathUte.DistanceAndDirection(out float distance, out Vector3 direction, ball, Target.transform);
 
@@ -44,6 +44,9 @@ namespace TowerDefence.Towers
 
 
             RenderLightning(segmentPoints, direction);
+
+            lightningLine.SetPosition(0, segmentPoints[0]);
+            lightningLine.SetPosition(segments, segmentPoints[segmentPoints.Count - 1]);
         }
 
         protected override void RenderLevelUpVisuals()
@@ -59,7 +62,7 @@ namespace TowerDefence.Towers
         /// <param name="_direction">direction from tower to target</param>
         private void RenderLightning(List<Vector3> _positions, Vector3 _direction)
         {
-            lightningLine.positionCount = segments;
+            lightningLine.positionCount = segments + 1;
             Vector3 newDirection = Vector3.Cross(_direction, _positions[recursionIndex]);
 
             _positions[recursionIndex] += newDirection * Random.Range(-maxVariance, maxVariance);

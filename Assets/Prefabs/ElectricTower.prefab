@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &4230841879181208665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8282228007694267392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a913eddb8380b54ca5edb49980e152e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerName: 
+  level: 1
+  description: 
+  cost: 1
+  maxLevel: 3
+  baseRequiredXp: 5
+  xpScaler: 1
+  damage: 0.1
+  minRange: 1
+  maxRange: 5
+  fireRate: 5
+  ball: {fileID: 5276081148822243457}
+  lightningLine: {fileID: 8485043540029970077}
+  segments: 10
+  maxVariance: 0.25
 --- !u!1 &2226415475644058924
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +105,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 0.05
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -319,33 +346,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &4230841879181208665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8282228007694267392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a913eddb8380b54ca5edb49980e152e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerName: 
-  level: 1
-  description: 
-  cost: 1
-  maxLevel: 3
-  baseRequiredXp: 5
-  xpScaler: 1
-  damage: 0.1
-  minRange: 1
-  maxRange: 5
-  fireRate: 5
-  ball: {fileID: 5276081148822243457}
-  lightningLine: {fileID: 8485043540029970077}
-  segments: 10
-  maxVariance: 0.25
 --- !u!1 &8351981265338397481
 GameObject:
   m_ObjectHideFlags: 0
