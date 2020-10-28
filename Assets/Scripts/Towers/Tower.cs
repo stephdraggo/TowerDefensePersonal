@@ -122,6 +122,10 @@ namespace TowerDefence.Towers
         /// <param name="_xp">xp value to be added.</param>
         public void AddExperience(Enemy _enemy)
         {
+            if (_enemy != target)
+            {
+                return;
+            }
             xp += _enemy.XP; //add xp amount sent from Enemy
             if (level < maxLevel && xp >= RequiredXp) //if level is not max and xp has reached required xp
             {

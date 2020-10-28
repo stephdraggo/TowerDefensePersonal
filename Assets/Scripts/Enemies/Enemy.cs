@@ -47,6 +47,7 @@ namespace TowerDefence.Enemies
         void Start()
         {
             player = Player.instance; //find player instance
+            onDeath.AddListener(player.AddMoney);
         }
 
         void Update()
