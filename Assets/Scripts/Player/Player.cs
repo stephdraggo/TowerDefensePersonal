@@ -40,6 +40,11 @@ namespace TowerDefence
         {
             money += _money;
         }
+        /// <summary>Gives player the money sent from the enemy on its death.</summary>
+        public void AddMoney(Enemy _enemy)
+        {
+            money += _enemy.Money;
+        }
 
         /// <summary>Takes money from the player when purchasing a tower.</summary>
         /// <param name="_tower">The Tower being bought.</param>

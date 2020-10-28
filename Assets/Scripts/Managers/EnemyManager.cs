@@ -59,6 +59,7 @@ namespace TowerDefence.Managers
             if (enemyIndex != -1)
             {
                 livingEnemies.RemoveAt(enemyIndex);
+                Destroy(_enemy.gameObject);
             }
         }
 

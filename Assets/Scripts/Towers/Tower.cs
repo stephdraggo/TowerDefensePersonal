@@ -120,9 +120,9 @@ namespace TowerDefence.Towers
         #region public
         /// <summary>Handles adding xp and checks if should level up.</summary>
         /// <param name="_xp">xp value to be added.</param>
-        public void AddExperience(float _xp)
+        public void AddExperience(Enemy _enemy)
         {
-            xp += _xp; //add xp amount sent from Enemy
+            xp += _enemy.XP; //add xp amount sent from Enemy
             if (level < maxLevel && xp >= RequiredXp) //if level is not max and xp has reached required xp
             {
                 LevelUp(); //call level up function
@@ -183,7 +183,7 @@ namespace TowerDefence.Towers
         {
             if (target != null) //if there is a target
             {
-                target.Damage(this); //tell the target to take damage according this tower's damage rate
+                target.Damage(Damage); //tell the target to take damage according this tower's damage rate
 
                 RenderAttackVisuals();
             }

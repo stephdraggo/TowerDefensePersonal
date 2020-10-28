@@ -112,3 +112,30 @@ MonoBehaviour:
   damage: 1
   xpGain: 0.2
   moneyGain: 1
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 719547863724313180, guid: 1dee275db6b47814a8a54c860cc2ae8d,
+          type: 3}
+        m_MethodName: AddExperience
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4230841879181208665, guid: c13b5ed26b44a99419bd63091f2639b4,
+          type: 3}
+        m_MethodName: AddExperience
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TowerDefence.Towers;
 using TowerDefence.Managers;
 
@@ -9,6 +10,12 @@ namespace TowerDefence.Enemies
     [AddComponentMenu("Mechanics/Enemy")]
     public class Enemy : MonoBehaviour
     {
+        [System.Serializable]
+        public class DeathEvent : UnityEvent<Enemy>
+        {
+
+        }
+
         #region Variables
         [Header("Reference Variables")]
 
@@ -25,8 +32,17 @@ namespace TowerDefence.Enemies
         [SerializeField] private float xpGain = 0.2f;
         [SerializeField] private int moneyGain = 1;
 
+        [Space]
+
+        [SerializeField]
+        private DeathEvent onDeath = new DeathEvent();
+
         private Player player;
 
+        #endregion
+        #region Properties
+        public float XP { get => xpGain; }
+        public int Money { get => moneyGain; }
         #endregion
         void Start()
         {
@@ -41,23 +57,18 @@ namespace TowerDefence.Enemies
         #region Functions
         /// <summary>Handles damage of enemy and checks if it should die.</summary>
         /// <param name="_tower">The tower doing the damage to the enemy.</param>
-        public void Damage(Tower _tower)
+        public void Damage(float _damage)
         {
-            health -= _tower.Damage;
-            _tower.AddExperience(xpGain);
+            health -= _damage;
             if (health <= 0)
             {
-                Death(_tower);
+                Death();
             }
         }
         /// <summary>Handles destroying the enemy.</summary>
-        /// <param name="_tower">The tower that receives xp from the kill.</param>
-        private void Death(Tower _tower)
+        private void Death()
         {
-            _tower.AddExperience(xpGain * 5);
-            player.AddMoney(moneyGain);
-            EnemyManager.instance.KillEnemy(this); //call manager kill method
-            Destroy(gameObject);
+            onDeath.Invoke(this);
         }
         #endregion
     }
