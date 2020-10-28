@@ -656,6 +656,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9f2128f12a6504b9794acc8a95552b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onAttackEvent:
+    m_PersistentCalls:
+      m_Calls: []
   spawnRate: 1
 --- !u!1001 &2067033484
 PrefabInstance:
